@@ -1,0 +1,19 @@
+{% extends 'edu_work/edu_work_master_page.html' %}
+{% block title %} Учебная работа {% endblock %}
+{% block content %}
+    <header class="reg-header text-center mb-5">
+        <h1 class="reg-header__title">Учебная работа</h1>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" class="btn btn-primary" value="Добавить">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'master_page.html' %}
+{% block title %} Учебная работа {% endblock %}
+{% block content %}
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link{% if request.path == '/edu_work/index/' %} active{% endif %}" href="/edu_work/index/">Учебная работа</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link{% if request.path == '/edu_work/create/' %} active{% endif %}" href="/edu_work/create/">Добавить</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link{% if request.path == '/edu_work/update/' %} active{% endif %}" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link{% if request.path == '/edu_work/delete/' %} active{% endif %}" href="#">Disabled</a>
+        </li>
+    </ul>
+{% endblock %}

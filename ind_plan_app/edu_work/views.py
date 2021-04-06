@@ -1,5 +1,5 @@
 from django.shortcuts import render, resolve_url
-from django.views.generic import TemplateView, UpdateView, CreateView
+from django.views.generic import TemplateView, UpdateView, CreateView, ListView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.views import LoginView
@@ -16,37 +16,45 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
+from django.utils import timezone
+from django.utils.translation import gettext as _
 
 
-@method_decorator(login_required, name='dispatch')
-class EduWorkView(TemplateView):
-    template_name = 'main/index.html'
+# @method_decorator(login_required, name='dispatch')
+class EduWorkView(ListView):
+    model = models.EducationalWork
+    paginate_by =  1
+    template_name = 'edu_work/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = _("Welcome to my site")
+        context['fields'] = [field.name for field in self.model._meta.get_fields()]
+
+        return context
 
 
-@method_decorator(login_required, name='dispatch')
+# @method_decorator(login_required, name='dispatch')
 class CreateEduWorkView(CreateView):
-    template_name = 'main/create.html'
-
-
-@method_decorator(login_required, name='dispatch')
-class UpdateEduWorkView(UpdateView):
-    template_name = 'main/update.html'
-
-
-@method_decorator(login_required, name='dispatch')
-class UserRegistrationView(CreateView):
-    model = models.User
-    template_name = 'registration/signup.html'
-    form_class = forms.UserRegistrationForm
-    success_url = reverse_lazy('login')
+    form_class = forms.EducationalWorkForm
+    model = models.EducationalWork
+    template_name = 'edu_work/create.html'
     
     def get_success_url(self):
-        return '/registration/student/step2' + '/%d'%self.object.pk
-    
-    def form_valid(self, form):
-        user = form.save()
-        user.add(self.request.user.id)
-        return super(UserRegistrationView, self).form_valid(form)
+        return reverse_lazy('edu_work_index')
+
+    def get_form(self, *args, **kwargs):
+        form = super(CreateEduWorkView, self).get_form(*args, **kwargs)
+        # print(form.fields)
+        # form.fields['education_work_type'].queryset = models.EducationalWorkType.objects.values("name")
+        # form.fields['b_a'].queryset = A.objects.filter(a_user=self.request.user) 
+        return form
+
+
+# @method_decorator(login_required, name='dispatch')
+class UpdateEduWorkView(UpdateView):
+    model = models.EducationalWork
+    template_name = 'edu_work/update.html'
 
 
 # Обработка не существующих страниц и ошибок

@@ -23,6 +23,7 @@ admin.site.site_title = 'Личный Кабинет администратор�
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
+    path('edu_work/', include('edu_work.urls')),
+    path('i18n/', include('django.conf.urls.i18n')),
     path('', include('main.urls')),
 ]
