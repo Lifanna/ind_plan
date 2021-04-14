@@ -18,5 +18,20 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: .\edu_work\views.py:31
-msgid "Welcome to my site"
-msgstr "Менің сайтыма қош келдіңіздер"
+msgid "Welcome"
+msgstr "Қош келдіңіз!"
+
+msgid "Educational work"
+msgstr "Оқу жұмысы"
+
+msgid "Sign in"
+msgstr "Кіру"
+
+msgid "Login"
+msgstr "Логин"
+
+msgid "Password"
+msgstr "Құпия сөз"
+
+msgid "Main"
+msgstr "Басты бет"

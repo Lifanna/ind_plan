@@ -29,7 +29,7 @@ class EduWorkView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['now'] = _("Welcome to my site")
-        context['fields'] = [field.name for field in self.model._meta.get_fields()]
+        context['fields'] = [_(field.verbose_name) for field in self.model._meta.get_fields() if field.name != "id"]
 
         return context
 
@@ -39,9 +39,10 @@ class CreateEduWorkView(CreateView):
     form_class = forms.EducationalWorkForm
     model = models.EducationalWork
     template_name = 'edu_work/create.html'
+    success_url = reverse_lazy('edu_work_index')
     
-    def get_success_url(self):
-        return reverse_lazy('edu_work_index')
+    # def get_success_url(self):
+    #     return reverse_lazy('edu_work_index')
 
     def get_form(self, *args, **kwargs):
         form = super(CreateEduWorkView, self).get_form(*args, **kwargs)
@@ -53,8 +54,10 @@ class CreateEduWorkView(CreateView):
 
 # @method_decorator(login_required, name='dispatch')
 class UpdateEduWorkView(UpdateView):
+    form_class = forms.EducationalWorkForm
     model = models.EducationalWork
     template_name = 'edu_work/update.html'
+    success_url = reverse_lazy('edu_work_index')
 
 
 # Обработка не существующих страниц и ошибок

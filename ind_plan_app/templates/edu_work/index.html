@@ -1,20 +1,25 @@
 {% include 'edu_work/edu_work_master_page.html' %}
+{% load i18n %}
 {% block content %}
     <header class="reg-header text-center mb-5">
-        <h1 class="reg-header__title">Учебная работа</h1>
+        <h1 class="reg-header__title">
+            {% trans "Educational work" %}
+            </h1>
     </header>
 
     {{ now }}
     <div class="container">
         <div class="row">
-            <div class="col-sm-12">
-                <table class="table-responsive-xl table table-hover table-striped table-bordered dataTable" id="dataTable" width="100%"
+            <div class="col-12">
+                <table class="table-responsive-xl table table-hover table-striped table-bordered dataTable" id="dataTable"
                     cellspacing="0" role="grid" aria-describedby="dataTable_info">
                     <thead>
                         <tr role="row">
+                            <th></th>
                             {% for field in fields %}
                                 <th>{{ field }}</th>
                             {% endfor %}
+                            <th>Редактирование</th>
                             <!-- <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                 colspan="1" aria-label="" style="">
                             </th>
@@ -59,7 +64,6 @@
                                         <label class="custom-control-label" for="check{{ entry.pk }}"></label>
                                     </div>
                                 </td>
-                                <td>{{ edu_work.pk }}</td>
                                 <td>{{ edu_work.education_work_type}}</td>
                                 <td>{{ edu_work.by_plan_1 }}</td>
                                 <td>{{ edu_work.by_fact_1 }}</td>
@@ -69,6 +73,8 @@
                                 <td>{{ edu_work.deviation_2 }}</td>
                                 <td>{{ edu_work.by_plan_annual }}</td>
                                 <td>{{ edu_work.by_fact_annual }}</td>
+                                <td>{{ edu_work.deviation_annual }}</td>
+                                <td><a href="{% url "edu_work_update" edu_work.id %}" class="btn btn-primary">Редактировать</a></td>
                             </tr>
                                 {% empty %}
                                     Учебная работа отсутствует

@@ -20,5 +20,57 @@ msgstr ""
 "100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: .\edu_work\views.py:31
-msgid "Welcome to my site"
-msgstr "Добро пожаловать на мой сайт"
+msgid "Welcome"
+msgstr "Добро пожаловать!"
+
+msgid "Sign in"
+msgstr "Войти"
+
+msgid "Educational work"
+msgstr "Учебная работа"
+
+msgid "Educational work type"
+msgstr "Тип учебной работы"
+
+msgid "Plan 1 semester"
+msgstr "План 1 семестр"
+
+msgid "Fact 1 semester"
+msgstr "Факт 1 семестр"
+
+
+msgid "Deviation 1 semester"
+msgstr "Отклонение 1 семестр"
+
+
+msgid "Plan 2 semester"
+msgstr "План 2 семестр"
+
+
+msgid "Fact 2 semester"
+msgstr "Факт 2 семестр"
+
+
+msgid "Deviation 2 semester"
+msgstr "Отклонение 2 семестр"
+
+
+msgid "Plan annual"
+msgstr "План за год"
+
+
+msgid "Fact annual"
+msgstr "Факт за год"
+
+
+msgid "Deviation annual"
+msgstr "Отклонение за год"
+
+msgid "Login"
+msgstr "Логин"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Main"
+msgstr "Главная"
