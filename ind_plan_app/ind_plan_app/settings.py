@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'main',
     'edu_work',
+    'i18n_switcher',
 ]
 
 LOCALE_PATHS = (
@@ -105,6 +106,20 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/index/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'ERROR',
+    },
+}
 
 AUTHENTICATION_BACKENDS = ['main.auth_backend.CustomBackend']
 

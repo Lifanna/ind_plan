@@ -38,6 +38,7 @@ class CustomBackend(ModelBackend):
 
         if self.user_can_authenticate(user):
             print("иииииииии:                   ", user)
+            request.session['access_token'] = 'here_is_access_token'
             # once the user was logged in, we update all his information
             return user
 

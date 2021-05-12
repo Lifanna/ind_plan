@@ -6,20 +6,33 @@
             {% trans "Educational work" %}
             </h1>
     </header>
-
-    {{ now }}
+    
     <div class="container">
         <div class="row">
+            <div class="col-12 col-md-6">
+                <label for="educationWorkType">Вид работы</label>
+                <select id="educationWorkType" name="education_work_type">
+                    {% for educational_work_type in educational_work_types %}
+                    <option value="{{ educational_work_type.id }}">{{ educational_work_type.name }}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-success mb-2">Сортировать</button>
+            </div>
+            <div class="col-12 col-md-6">
+                <a href="/edu_work/create/" class="btn btn-primary float-md-right mb-2">Добавить</a>
+            </div>
             <div class="col-12">
-                <table class="table-responsive-xl table table-hover table-striped table-bordered dataTable" id="dataTable"
-                    cellspacing="0" role="grid" aria-describedby="dataTable_info">
-                    <thead>
+                {% if edu_works|length > 0 %}
+                
+                <table class="table-responsive-xl table table-hover table-bordered dataTable" id="dataTable"
+                cellspacing="0" role="grid" aria-describedby="dataTable_info">
+                    <thead class="bg-secondary">
                         <tr role="row">
                             <th></th>
                             {% for field in fields %}
-                                <th>{{ field }}</th>
+                            <th class="text-white">{{ field }}</th>
                             {% endfor %}
-                            <th>Редактирование</th>
+                            <!-- <th>Редактирование</th> -->
                             <!-- <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                 colspan="1" aria-label="" style="">
                             </th>
@@ -29,7 +42,7 @@
                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                 colspan="1" aria-label="" style="">Date
                             </th>
-                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                 colspan="1" aria-label="" style="">Trade
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
@@ -56,12 +69,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for edu_work in object_list %}
+                        
+                        {% for edu_work in edu_works %}
                             <tr role="row">
                                 <td class="text-center">
                                     <div class="custom-control-lg custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input form-control-lg" data-id="{{ entry.pk}}" id="check{{ entry.pk }}">
-                                        <label class="custom-control-label" for="check{{ entry.pk }}"></label>
+                                        <input type="checkbox" class="custom-control-input form-control-lg" data-id="{{ edu_work.pk}}" id="check{{ edu_work.pk }}">
+                                        <label class="custom-control-label" for="check{{ edu_work.pk }}"></label>
                                     </div>
                                 </td>
                                 <td>{{ edu_work.education_work_type}}</td>
@@ -74,11 +88,28 @@
                                 <td>{{ edu_work.by_plan_annual }}</td>
                                 <td>{{ edu_work.by_fact_annual }}</td>
                                 <td>{{ edu_work.deviation_annual }}</td>
-                                <td><a href="{% url "edu_work_update" edu_work.id %}" class="btn btn-primary">Редактировать</a></td>
+                                <td>{{ edu_work.user.first_name }} {{ edu_work.user.last_name }}</td>
+                                <!-- <td><a href="{% url "edu_work_update" edu_work.id %}" class="btn btn-primary">Редактировать</a></td> -->
                             </tr>
-                                {% empty %}
-                                    Учебная работа отсутствует
-                                {% endfor %}
+                            {% empty %}
+                                Учебная работа отсутствует
+                            {% endfor %}
+                            <tr role="row">
+                                <td class="text-center">
+                                    Итого
+                                </td>
+                                <td></td>
+                                <td>{{ totals.by_plan_1_sum }}</td>
+                                <td>{{ totals.by_fact_1_sum }}</td>
+                                <td>{{ totals.deviation_1_sum }}</td>
+                                <td>{{ totals.by_plan_2_sum }}</td>
+                                <td>{{ totals.by_fact_2_sum }}</td>
+                                <td>{{ totals.deviation_2_sum }}</td>
+                                <td>{{ totals.by_plan_annual_sum }}</td>
+                                <td>{{ totals.by_fact_annual_sum }}</td>
+                                <td>{{ totals.deviation_annual_sum }}</td>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -86,21 +117,24 @@
                     <div class="pagination">
                         <span class="step-links">
                             {% if page_obj.has_previous %}
-                                <a href="?page=1">&laquo; first</a>
-                                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                                <a href="?page=1">&laquo; {% trans "first" %}</a>
+                                <a href="?page={{ page_obj.previous_page_number }}">{% trans "previous" %}</a>
                             {% endif %}
 
                             <span class="current">
-                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                                {% trans "page" %} {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
                             </span>
 
                             {% if page_obj.has_next %}
-                                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                                <a href="?page={{ page_obj.next_page_number }}">{% trans "next" %}</a>
+                                <a href="?page={{ page_obj.paginator.num_pages }}">{% trans "last" %} &raquo;</a>
                             {% endif %}
                         </span>
                     </div>
                 </div>
+                {% else %}
+                    <h3 class="text-center">Учебно-методическая работа отсутствует</h3>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-{% extends 'master_page.html' %}
+{% include 'edu_work/edu_work_master_page.html' %}
 {% load i18n %}
 {% block title %} Учебная работа {% endblock %}
 {% block content %}
@@ -11,10 +11,10 @@
         </li>
         <li class="nav-item">
             <!-- <a class="nav-link{% if request.path == '/edu_work/create/' %} active{% endif %}" href="/edu_work/create/">Добавить</a> -->
-            <a class="nav-link{% if request.path == '/edu_work/scientific/create/' %} active{% endif %}" href="/edu_work/scientific/create/">Научно-методическая работа</a>
+            <a class="nav-link{% if request.path == '/edu_work/create/' %} active{% endif %}" href="/edu_work/create/">Научно-методическая работа</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link{% if request.path == '/edu_work/organizational/create/' %} active{% endif %}" href="/edu_work/organizational/create/">Организационно-методическая работа</a>
+            <a class="nav-link{% if request.path == '/edu_work/create/' %} active{% endif %}" href="/edu_work/create/">Организационно-методическая работа</a>
         </li>
     </ul>
 {% endblock %}

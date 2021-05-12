@@ -20,6 +20,22 @@ msgstr ""
 "100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: .\edu_work\views.py:31
+# --------------общая--------------
+msgid "first"
+msgstr "первая"
+
+msgid "previous"
+msgstr "предыдущая"
+
+msgid "next"
+msgstr "следующая"
+
+msgid "last"
+msgstr "последняя"
+
+msgid "page"
+msgstr "страница"
+
 msgid "Welcome"
 msgstr "Добро пожаловать!"
 
@@ -62,15 +78,106 @@ msgstr "План за год"
 msgid "Fact annual"
 msgstr "Факт за год"
 
-
 msgid "Deviation annual"
 msgstr "Отклонение за год"
-
-msgid "Login"
-msgstr "Логин"
 
 msgid "Password"
 msgstr "Пароль"
 
 msgid "Main"
 msgstr "Главная"
+
+# --------------Учебно-методическая работа--------------
+msgid "Educational methodical work"
+msgstr "Учебно-методическая работа"
+
+msgid "Educational methodical work type"
+msgstr "Вид работы"
+
+msgid "Specialty"
+msgstr "Специальность"
+
+msgid "Hours count"
+msgstr "Количество часов"
+
+msgid "Plan"
+msgstr "План"
+
+msgid "Fact"
+msgstr "Факт"
+
+msgid "Author"
+msgstr "Преподаватель"
+
+# --------------пользователи--------------
+msgid "Personal"
+msgstr "Личная информация"
+
+msgid "Service information"
+msgstr "Служебная информация"
+
+msgid "Permissions"
+msgstr "Полномочия"
+
+msgid "Important dates"
+msgstr "Важные даты"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "Users"
+msgstr "Пользователи"
+
+msgid "Academic rank"
+msgstr "Ученое звание"
+
+msgid "Academic ranks"
+msgstr "Ученые звания"
+
+msgid "Academic degree"
+msgstr "Ученая степень"
+
+msgid "Academic degrees"
+msgstr "Ученые степени"
+
+msgid "Status"
+msgstr "Должность"
+
+msgid "Statuses"
+msgstr "Должности"
+
+msgid "Rate"
+msgstr "Ставка"
+
+msgid "Rates"
+msgstr "Ставки"
+
+msgid "Business form"
+msgstr "Форма занятости"
+
+msgid "Business forms"
+msgstr "Формы занятости"
+
+msgid "Chair"
+msgstr "Кафедра"
+
+msgid "Chairs"
+msgstr "Кафедры"
+
+msgid "Faculty"
+msgstr "Факультет"
+
+msgid "Faculties"
+msgstr "Факультеты"
+
+msgid "Email address"
+msgstr "Email-адрес"
+
+msgid "Login"
+msgstr "Логин"
+
+msgid "Patronymic"
+msgstr "Отчество"
+
+msgid "User is already exists"
+msgstr "Пользователь уже существует"

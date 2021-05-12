@@ -26,7 +26,17 @@ class CustomLoginView(LoginView):
 
 @method_decorator(login_required, name='dispatch')
 class IndexView(TemplateView):
-    template_name = 'main/index.html'
+    def get_template_names(self, request):
+        template_name = 'main/index.html'
+        if request.user.status.name == 'Преподаватель':
+            template_name = 'main/index_tutor.html'
+        elif request.user.status.name == 'Заведующий кафедрой':
+            template_name = 'main/index_head.html'
+
+        return ['%s.html' % self.kwargs['template']]
+
+    def get_success_url(self):
+        return '/registration/student/step2' + '/%d'%self.object.pk
 
 
 @method_decorator(login_required, name='dispatch')

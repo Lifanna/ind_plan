@@ -2,7 +2,7 @@ import unicodedata
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
-from . import models
+from .._models import edu_work_models as models
 from translated_fields.utils import language_code_formfield_callback
 
 
@@ -16,6 +16,14 @@ class EducationalWorkForm(forms.ModelForm):
     class Meta:
         model = models.EducationalWork
         fields = '__all__'
+        exclude = (
+            'deviation_1',
+            'deviation_2',
+            'by_plan_annual',
+            'by_fact_annual',
+            'deviation_annual',
+            'user',
+        ) 
         error_messages = {
             'education_work_type': {
                 'required': "Пожалуйста, укажите вид учебной работы"

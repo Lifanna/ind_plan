@@ -4,6 +4,7 @@ from django.contrib.admin import ModelAdmin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.db.models import Q
 from . import models
+from django.utils.translation import gettext as _
 
 
 # Register your models here.
@@ -12,12 +13,16 @@ class UserAdmin(DjangoUserAdmin):
     """Define admin model for custom User model with no email field."""
 
     fieldsets = (
-        (None, {'fields': ('login',)}),
-        ('Личная информация', {
+        (None, {
+            'fields': ('login',)}),
+        (_('Personal'), {
             'fields': ('password', 'first_name', 'last_name', 'patronymic',)
         }),
-        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
-        ('Important dates', {'fields': ('last_login', 'date_joined')}),
+        (_('Service information'), {
+            'fields': ('status', 'academic_degree', 'academic_rank', 'chair', 'faculty',)
+        }),
+        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
         (None, {
@@ -30,4 +35,3 @@ class UserAdmin(DjangoUserAdmin):
     search_fields = ('email', 'login', 'first_name', 'last_name',)
     ordering = ('login',)
     # inlines = [StudentInline,]
-

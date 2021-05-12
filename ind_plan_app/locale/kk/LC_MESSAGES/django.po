@@ -35,3 +35,40 @@ msgstr "Құпия сөз"
 
 msgid "Main"
 msgstr "Басты бет"
+
+# --------------Учебно-методическая работа--------------
+msgid "Educational methodical work"
+msgstr "Оқу-әдістемелік жұмыс"
+
+msgid "Educational methodical work type"
+msgstr "Жұмыс түрі"
+
+msgid "Specialty"
+msgstr "Мамандық"
+
+msgid "Hours count"
+msgstr "Сағат саны"
+
+msgid "Plan"
+msgstr "Жоспар"
+
+msgid "Fact"
+msgstr "Нақты"
+
+msgid "Author"
+msgstr "Оқытушы"
+
+msgid "first"
+msgstr "алғашқысы"
+
+msgid "previous"
+msgstr "алды"
+
+msgid "next"
+msgstr "келесі"
+
+msgid "last"
+msgstr "соңы"
+
+msgid "page"
+msgstr "бет"

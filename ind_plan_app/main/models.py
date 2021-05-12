@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, User, BaseUserManager
+from django.utils.translation import gettext as _
 
 
 class UserManager(BaseUserManager):
@@ -46,8 +47,8 @@ class AcademicRank(models.Model):
     is_deleted = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name = 'Ученое звание'
-        verbose_name_plural = 'Ученые звания'
+        verbose_name = _('Academic rank')
+        verbose_name_plural = _('Academic ranks')
 
 
 # ученая степень
@@ -57,8 +58,8 @@ class AcademicDegree(models.Model):
     is_deleted = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name = 'Ученая степень'
-        verbose_name_plural = 'Ученые степени'    
+        verbose_name = _('Academic degree')
+        verbose_name_plural = _('Academic degrees')
 
 
 # должность
@@ -68,8 +69,8 @@ class Status(models.Model):
     is_deleted = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name = 'Должность'
-        verbose_name_plural = 'Должности'
+        verbose_name = _('Status')
+        verbose_name_plural = _('Statuses')
 
 
 # ставка
@@ -79,8 +80,8 @@ class Rate(models.Model):
     is_deleted = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name = 'Ставка'
-        verbose_name_plural = 'Ставки'
+        verbose_name = _('Rate')
+        verbose_name_plural = _('Rates')
 
 
 # форма занятости: штатный/совместитель
@@ -90,8 +91,8 @@ class BusinessForm(models.Model):
     is_deleted = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name = 'Форма занятости'
-        verbose_name_plural = 'Формы занятости'
+        verbose_name = _('Business form')
+        verbose_name_plural = _('Business forms')
 
 
 # кафедра
@@ -101,8 +102,8 @@ class Chair(models.Model):
     is_deleted = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name = 'Форма занятости'
-        verbose_name_plural = 'Формы занятости'
+        verbose_name = _('Chair')
+        verbose_name_plural = _('Chairs')
 
 
 # факультет
@@ -112,35 +113,34 @@ class Faculty(models.Model):
     is_deleted = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name = 'Форма занятости'
-        verbose_name_plural = 'Формы занятости'
+        verbose_name = _('Faculty')
+        verbose_name_plural = _('Faculties')
 
 
 class User(AbstractUser):
     username = None
     
-    email = models.EmailField(('Email address'), blank=True)
+    email = models.EmailField(_('Email address'), blank=True)
     
-    login = models.CharField("Login", unique=True, max_length=300)
+    login = models.CharField(_('Login'), unique=True, max_length=300)
     
-    status = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True)
+    status = models.ForeignKey(Status, on_delete=models.SET_NULL, verbose_name=_('Status'), null=True)
 
-    patronymic = models.CharField("Patronymic", max_length=300)
+    patronymic = models.CharField(_("Patronymic"), max_length=300)
     
-    academic_degree = models.ForeignKey(AcademicDegree, on_delete=models.SET_NULL, null=True)
+    academic_degree = models.ForeignKey(AcademicDegree, verbose_name=_('Academic degree'), on_delete=models.SET_NULL, null=True)
     
-    academic_rank = models.ForeignKey(AcademicRank, on_delete=models.SET_NULL, null=True)
+    academic_rank = models.ForeignKey(AcademicRank, verbose_name=_('Academic rank'), on_delete=models.SET_NULL, null=True)
 
-    chair = models.ForeignKey(Chair, on_delete=models.SET_NULL, null=True)
+    chair = models.ForeignKey(Chair, on_delete=models.SET_NULL, verbose_name=_('Chair'), null=True)
 
-    faculty = models.ForeignKey(Faculty, on_delete=models.SET_NULL, null=True)
+    faculty = models.ForeignKey(Faculty, on_delete=models.SET_NULL, verbose_name=_('Faculty'), null=True)
 
-    rate = models.ForeignKey(Rate, on_delete=models.SET_NULL, null=True)
+    rate = models.ForeignKey(Rate, on_delete=models.SET_NULL, verbose_name=_('Rate'), null=True)
 
-    business_form = models.ForeignKey(BusinessForm, on_delete=models.SET_NULL, null=True)
+    business_form = models.ForeignKey(BusinessForm, on_delete=models.SET_NULL, verbose_name=_('Business form'), null=True)
     
     USERNAME_FIELD = 'login'
-
 
     is_deleted = models.BooleanField(default=False)
 
@@ -148,15 +148,14 @@ class User(AbstractUser):
 
     class Meta:
         db_table = "auth_user"
-        verbose_name = 'Пользователь'
-        verbose_name_plural = 'Пользователи'
+        verbose_name = _('User')
+        verbose_name_plural = _('Users')
 
     def clean(self):
         # here we can check some mandatory fields and complex relations between fields
         super(User, self).clean()
 
     def save(self, *args, **kwargs):
-        print("DDDDDDDDDAAAAAAAAAAAAAAAAAAAA")
         self.clean()
         self.validate_unique()
         super(User, self).save(*args, **kwargs)
@@ -164,5 +163,5 @@ class User(AbstractUser):
     def validate_unique(self, *args, **kwargs):
         super(User, self).validate_unique(*args, **kwargs)
         if not User.objects.is_unique_login(self):
-            raise ValidationError("Пользователь уже существует")
+            raise ValidationError_("User is already exists")
 
