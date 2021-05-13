@@ -5,8 +5,7 @@ from django.contrib.auth import logout
 from django.conf.urls.static import static
 from django.conf import settings
 from django.urls import path, include
-from ._views import edu_work_views
-from ._views import edu_method_work_views
+from ._views import edu_work_views, edu_method_work_views, org_method_work_views, extracurricular_work_views
 
 
 urlpatterns = [
@@ -26,9 +25,17 @@ urlpatterns = [
     path('scientific/update/<int:pk>/', edu_method_work_views.UpdateEduMethodWorkView.as_view(), name='edu_method_work_update'),
     
     # organizational_work_views
-    path('organizational/create/', edu_method_work_views.CreateEduMethodWorkView.as_view(), name='edu_method_work_create'),
-    path('organizational/index/', edu_method_work_views.EduMethodWorkView.as_view(), name='edu_method_work_index'),
-    path('organizational/update/<int:pk>/', edu_method_work_views.UpdateEduMethodWorkView.as_view(), name='edu_method_work_update'),
+    path('organizational/create/', org_method_work_views.CreateOrgMethodWorkView.as_view(), name='org_method_work_create'),
+    path('organizational/index/', org_method_work_views.OrgMethodWorkView.as_view(), name='org_method_work_index'),
+    path('organizational/update/<int:pk>/', org_method_work_views.UpdateOrgMethodWorkView.as_view(), name='org_method_work_update'),
+    
+    # extracurricular_work_views basic
+    path('extra/index/', extracurricular_work_views.ExtracurricularWorkView.as_view(), name='extracurricular_work_index'),
+    
+    # extracurricular_work_views Internaional cooperation
+    path('extra/int_coop/create/', extracurricular_work_views.CreateInternationalCooperationWorkView.as_view(), name='extra_int_coop_work_create'),
+    path('extra/int_coop/index/', extracurricular_work_views.InternationalCooperationWorkView.as_view(), name='extra_int_coop_work_index'),
+    path('extra/int_coop/update/<int:pk>/', extracurricular_work_views.UpdateInternationalCooperationWorkView.as_view(), name='extra_int_coop_work_update'),
 ]
 
 # if DEBUG:

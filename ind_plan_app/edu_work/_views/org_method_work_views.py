@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
-from .._forms import edu_method_work_forms as forms
-from .._models import edu_method_work_models as models
+from .._forms import org_method_work_forms as forms
+from .._models import org_method_work_models as models
 from django.urls import reverse_lazy
 from ind_plan_app import settings
 from django.utils.http import (
@@ -22,32 +22,28 @@ from django.db import models as django_db_models
 
 
 @method_decorator(login_required, name='dispatch')
-class EduMethodWorkView(ListView):
-    model = models.EduMethodWork
+class OrgMethodWorkView(ListView):
+    model = models.OrgMethodWork
     paginate_by =  1
-    template_name = 'edu_work/edu_method_work/index.html'
-    context_object_name = "edu_method_works"
+    template_name = 'edu_work/org_method_work/index.html'
+    context_object_name = "org_method_works"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['now'] = _("Welcome to my site")
+        context['org_method_work_types'] = models.OrgMethodWorkType.objects.all()
 
         if self.request.user.status.name == "Преподаватель":
-            context['edu_works'] = self.model.objects.filter(user=self.request.user.id)
+            context['org_method_works'] = self.model.objects.filter(user=self.request.user.id)
             context['totals'] = self.model.objects.filter(
                 user=self.request.user.id)\
             .aggregate(
                 hours_1_sum=django_db_models.Sum('hours_1'),
-                by_plan_sum=django_db_models.Sum('by_plan'),
-                by_fact_sum=django_db_models.Sum('by_fact'),
             )
         else:
-            context['edu_works'] = self.model.objects.all()
+            context['org_method_works'] = self.model.objects.all()
             context['totals'] = self.model.objects.all()\
             .aggregate(
                 hours_1_sum=django_db_models.Sum('hours_1'),
-                by_plan_sum=django_db_models.Sum('by_plan'),
-                by_fact_sum=django_db_models.Sum('by_fact'),
             )
 
         context['fields'] = [_(field.verbose_name) for field in self.model._meta.get_fields() if field.name != "id"]
@@ -55,34 +51,31 @@ class EduMethodWorkView(ListView):
         return context
 
 
-
 @method_decorator(login_required, name='dispatch')
-class CreateEduMethodWorkView(CreateView):
-    form_class = forms.EduMethodWorkForm
-    model = models.EduMethodWork
-    template_name = 'edu_work/edu_method_work/create.html'
-    success_url = reverse_lazy('edu_work_index')
+class CreateOrgMethodWorkView(CreateView):
+    form_class = forms.OrgMethodWorkForm
+    model = models.OrgMethodWork
+    template_name = 'edu_work/org_method_work/create.html'
+    success_url = reverse_lazy('org_method_work_index')
 
-    def get_form(self, *args, **kwargs):
-        form = super(CreateEduMethodWorkView, self).get_form(*args, **kwargs)
-        # print(form.fields)
-        # form.fields['education_work_type'].queryset = models.EducationalWorkType.objects.values("name")
-        # form.fields['b_a'].queryset = A.objects.filter(a_user=self.request.user) 
-        return form
+    # def get_form(self, *args, **kwargs):
+    #     form = super(CreateOrgMethodWorkView, self).get_form(*args, **kwargs)
+        
+    #     return form
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        response = super(CreateEduMethodWorkView, self).form_valid(form)
+        response = super(CreateOrgMethodWorkView, self).form_valid(form)
 
         return response
 
 
 @method_decorator(login_required, name='dispatch')
-class UpdateEduMethodWorkView(UpdateView):
-    form_class = forms.EduMethodWorkForm
-    model = models.EduMethodWork
-    template_name = 'edu_work/edu_method_work/update.html'
-    success_url = reverse_lazy('edu_work_index')
+class UpdateOrgMethodWorkView(UpdateView):
+    form_class = forms.OrgMethodWorkForm
+    model = models.OrgMethodWork
+    template_name = 'edu_work/org_method_work/update.html'
+    success_url = reverse_lazy('org_work_index')
 
 
 # Обработка не существующих страниц и ошибок

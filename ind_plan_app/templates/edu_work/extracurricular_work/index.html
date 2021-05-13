@@ -1,11 +1,9 @@
 {% include 'edu_work/edu_work_master_page.html' %}
 {% load i18n %}
 {% block content %}
-{% load filename %}
-
     <header class="reg-header text-center mb-5">
         <h1 class="reg-header__title">
-            {% trans "Organizational methodical work" %}
+            {% trans "Extracurricular work" %}
             </h1>
     </header>
 
@@ -14,20 +12,20 @@
             <div class="col-12 col-md-6">
                 <label for="educationWorkType">Вид работы</label>
                 <select id="educationWorkType" name="education_work_type">
-                    {% for org_method_work_type in org_method_work_types %}
-                    <option value="{{ org_method_work_type.id }}">{{ org_method_work_type.name }}</option>
+                    {% for extracurricular_work_type in extracurricular_work_types %}
+                    <option value="{{ extracurricular_work_type.id }}">{{ extracurricular_work_type.name }}</option>
                     {% endfor %}
                 </select>
                 <button class="btn btn-success mb-2">Сортировать</button>
             </div>
             <div class="col-12 col-md-6">
-                <a href="/edu_work/organizational/create/" class="btn btn-primary float-md-right mb-2">Добавить</a>
+                <a href="/edu_work/methodical/create/" class="btn btn-primary float-md-right mb-2">Добавить</a>
             </div>
             <div class="col-12">
+                {% if edu_method_works|length > 0 %}
                 <table class="table-responsive-xl table table-hover table-striped table-bordered dataTable" id="dataTable"
                     cellspacing="0" role="grid" aria-describedby="dataTable_info">
                     <thead>
-                    {% if org_method_work_types|length > 0 %}
                         <tr role="row">
                             <th></th>
                             {% for field in fields %}
@@ -36,7 +34,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for org_method_work in org_method_works %}
+                        {% for edu_method_work in edu_method_works %}
                             <tr role="row">
                                 <td class="text-center">
                                     <div class="custom-control-lg custom-control custom-checkbox">
@@ -44,15 +42,15 @@
                                         <label class="custom-control-label" for="check{{ entry.pk }}"></label>
                                     </div>
                                 </td>
-                                <td>{{ org_method_work.org_method_work_type}}</td>
-                                <td>{{ org_method_work.information_name }}</td>
-                                <td>{{ org_method_work.hours_1 }}</td>
-                                <td>{{ org_method_work.execution_period }}</td>
-                                <td>{{ org_method_work.document|filename }}</td>
-                                <td>{{ org_method_work.user.first_name }} {{ org_method_work.user.last_name }}</td>
+                                <td>{{ edu_method_work.edu_method_work_type}}</td>
+                                <td>{{ edu_method_work.specialty }}</td>
+                                <td>{{ edu_method_work.hours_1 }}</td>
+                                <td>{{ edu_method_work.by_plan }}</td>
+                                <td>{{ edu_method_work.by_fact }}</td>
+                                <td>{{ edu_method_work.user.first_name }} {{ edu_method_work.user.last_name }}</td>
                             </tr>
                             {% empty %}
-                                Организационно-методическая работа отсутствует
+                                Учебно-методическая работа отсутствует
                             {% endfor %}
                             <tr role="row">
                                 <td class="text-center">
@@ -61,7 +59,8 @@
                                 <td></td>
                                 <td></td>
                                 <td>{{ totals.hours_1_sum }}</td>
-                                <td></td>
+                                <td>{{ totals.by_plan_sum }}</td>
+                                <td>{{ totals.by_fact_sum }}</td>
                                 <td></td>
                             </tr>
                         </tbody>
@@ -87,7 +86,7 @@
                     </div>
                 </div>
                 {% else %}
-                    <h3 class="text-center">Организационно-методическая работа отсутствует</h3>
+                    <h3 class="text-center">Учебно-методическая работа отсутствует</h3>
                 {% endif %}
             </div>
         </div>

@@ -181,3 +181,20 @@ msgstr "Отчество"
 
 msgid "User is already exists"
 msgstr "Пользователь уже существует"
+
+
+# --------------Организационно-методическая работа--------------
+msgid "Organizational methodical work"
+msgstr "Организационно-методическая работа"
+
+msgid "Organizational methodical works"
+msgstr "Организационно-методические работы"
+
+msgid "Organizational methodical work type"
+msgstr "Вид организационно-методической работы"
+
+msgid "Organizational methodical work types"
+msgstr "Виды организационно-методических работ"
+
+msgid "Prepared information name"
+msgstr "Название подготовленной информации"

@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand
 from django.core.files import File
 from django.utils.timezone import now
 from main import models
-from edu_work._models import edu_method_work_models
+from edu_work._models import edu_method_work_models, org_method_work_models
 import datetime
 import os
 from pathlib import Path
@@ -61,12 +61,13 @@ class Command(BaseCommand):
 
     def populate_db(self):
         # должности
-        # self.insert_records_from_file('main/management/commands/statuses.txt', models.Status)
-        # self.insert_records_from_file('main/management/commands/academic_degrees.txt', models.AcademicDegree)
-        # self.insert_records_from_file('main/management/commands/academic_ranks.txt', models.AcademicRank)
-        # self.insert_records_from_file('main/management/commands/chairs.txt', models.Chair)
-        # self.insert_records_from_file('main/management/commands/faculties.txt', models.Faculty)
-        # self.insert_records_from_file('main/management/commands/specialties.txt', edu_method_work_models.Specialty)
+        self.insert_records_from_file('main/management/commands/statuses.txt', models.Status)
+        self.insert_records_from_file('main/management/commands/academic_degrees.txt', models.AcademicDegree)
+        self.insert_records_from_file('main/management/commands/academic_ranks.txt', models.AcademicRank)
+        self.insert_records_from_file('main/management/commands/chairs.txt', models.Chair)
+        self.insert_records_from_file('main/management/commands/faculties.txt', models.Faculty)
+        self.insert_records_from_file('main/management/commands/specialties.txt', edu_method_work_models.Specialty)
         self.insert_records_from_file('main/management/commands/edu_method_work_types.txt', edu_method_work_models.EduMethodWorkType)
+        self.insert_records_from_file('main/management/commands/org_method_work_types.txt', org_method_work_models.OrgMethodWorkType)
         
         # BASE_DIR = Path(__file__).resolve().parent

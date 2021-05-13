@@ -33,7 +33,7 @@ class EduWorkView(ListView):
         context['now'] = _("Welcome to my site")
         context['educational_work_types'] = models.EducationalWorkType.objects.all()
 
-        if self.request.user.status.id == 1:
+        if self.request.user.status.name == "Преподаватель":
             context['edu_works'] = self.model.objects.filter(user=self.request.user.id)
             context['totals'] = self.model.objects.filter(
                 user=self.request.user.id)\

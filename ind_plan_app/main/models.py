@@ -126,7 +126,7 @@ class User(AbstractUser):
     
     status = models.ForeignKey(Status, on_delete=models.SET_NULL, verbose_name=_('Status'), null=True)
 
-    patronymic = models.CharField(_("Patronymic"), max_length=300)
+    patronymic = models.CharField(_("Patronymic"), max_length=300, blank=True, null=True)
     
     academic_degree = models.ForeignKey(AcademicDegree, verbose_name=_('Academic degree'), on_delete=models.SET_NULL, null=True)
     
