@@ -61,7 +61,7 @@ class CreateEduMethodWorkView(CreateView):
     form_class = forms.EduMethodWorkForm
     model = models.EduMethodWork
     template_name = 'edu_work/edu_method_work/create.html'
-    success_url = reverse_lazy('edu_work_index')
+    success_url = reverse_lazy('edu_method_work_index')
 
     def get_form(self, *args, **kwargs):
         form = super(CreateEduMethodWorkView, self).get_form(*args, **kwargs)
@@ -82,7 +82,7 @@ class UpdateEduMethodWorkView(UpdateView):
     form_class = forms.EduMethodWorkForm
     model = models.EduMethodWork
     template_name = 'edu_work/edu_method_work/update.html'
-    success_url = reverse_lazy('edu_work_index')
+    success_url = reverse_lazy('edu_method_work_index')
 
 
 # Обработка не существующих страниц и ошибок

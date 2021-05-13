@@ -36,6 +36,16 @@ urlpatterns = [
     path('extra/int_coop/create/', extracurricular_work_views.CreateInternationalCooperationWorkView.as_view(), name='extra_int_coop_work_create'),
     path('extra/int_coop/index/', extracurricular_work_views.InternationalCooperationWorkView.as_view(), name='extra_int_coop_work_index'),
     path('extra/int_coop/update/<int:pk>/', extracurricular_work_views.UpdateInternationalCooperationWorkView.as_view(), name='extra_int_coop_work_update'),
+
+    # extracurricular_work_views Proforientation
+    path('extra/proforientation/create/', extracurricular_work_views.CreateVocationalGuidanceWorkView.as_view(), name='extra_voc_guid_work_create'),
+    path('extra/proforientation/index/', extracurricular_work_views.VocationalGuidanceWorkView.as_view(), name='extra_voc_guid_work_index'),
+    path('extra/proforientation/update/<int:pk>/', extracurricular_work_views.UpdateVocationalGuidanceWorkView.as_view(), name='extra_voc_guid_work_update'),
+
+    # extracurricular_work_views Curatorship
+    path('extra/curatorship/create/', extracurricular_work_views.CreateCuratorshipWorkView.as_view(), name='extra_curatorship_work_create'),
+    path('extra/curatorship/index/', extracurricular_work_views.CuratorshipWorkView.as_view(), name='extra_curatorship_work_index'),
+    path('extra/curatorship/update/<int:pk>/', extracurricular_work_views.UpdateCuratorshipWorkView.as_view(), name='extra_curatorship_work_update'),
 ]
 
 # if DEBUG:

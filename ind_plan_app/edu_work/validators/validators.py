@@ -3,8 +3,7 @@ from django.core.exceptions import ValidationError
 
 
 def upload_to(instance, filename):
-    print('USER and RECORD ID', instance.user.id, instance.pk)
-    return os.path.join("uploads/" + str(instance.user.id) + "/" + str(instance.id), filename)
+    return os.path.join("uploads/" + str(instance.user.id) + "/", filename)
 
 def validate_file_extension(value):
     ext = os.path.splitext(value.name)[1]  # [0] returns path+filename
