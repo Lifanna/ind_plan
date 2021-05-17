@@ -24,6 +24,7 @@ class EducationalWorkAdmin(ModelAdmin):
             'by_plan_annual',
             'by_fact_annual',
             'deviation_annual',
+            'approved',
         )}),
     )
     readonly_fields = (
@@ -53,6 +54,7 @@ class EducationalWorkAdmin(ModelAdmin):
             'hours_1',
             'execution_period',
             'document',
+            'approved',
         )}),
     )
     readonly_fields = (
@@ -64,5 +66,21 @@ class EducationalWorkAdmin(ModelAdmin):
     list_filter = ('user', 'org_method_work_type',)
     search_fields = ('user', 'org_method_work_type',)
     ordering = ('user', 'org_method_work_type',)
+    # inlines = [StudentInline,]
+
+
+@admin.register(edu_work_models.EducationalWorkType)
+class EducationalWorkTypeAdmin(ModelAdmin):
+    """Регистрация модели Тип учебной работы в админ панели"""
+
+    fieldsets = (
+        (None, {'fields': (
+            'name',
+        )}),
+    )
+    # list_display = ('__str__', 'email',)
+    list_filter = ('name',)
+    search_fields = ('name',)
+    ordering = ('id',)
     # inlines = [StudentInline,]
 

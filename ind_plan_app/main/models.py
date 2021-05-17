@@ -24,8 +24,7 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
 
-        print("ВВВВВВВВВвотттттттт:      ")
-        print(login, password)
+        print("Login: ", login, "Password: ", password)
 
         if extra_fields.get('is_staff') is not True:
             raise ValueError('Superuser must have is_staff=True.')
@@ -50,6 +49,9 @@ class AcademicRank(models.Model):
         verbose_name = _('Academic rank')
         verbose_name_plural = _('Academic ranks')
 
+    def __str__(self):
+        return self.name
+
 
 # ученая степень
 class AcademicDegree(models.Model):
@@ -60,6 +62,9 @@ class AcademicDegree(models.Model):
     class Meta:
         verbose_name = _('Academic degree')
         verbose_name_plural = _('Academic degrees')
+
+    def __str__(self):
+        return self.name
 
 
 # должность
@@ -72,6 +77,9 @@ class Status(models.Model):
         verbose_name = _('Status')
         verbose_name_plural = _('Statuses')
 
+    def __str__(self):
+        return self.name
+
 
 # ставка
 class Rate(models.Model):
@@ -82,6 +90,9 @@ class Rate(models.Model):
     class Meta:
         verbose_name = _('Rate')
         verbose_name_plural = _('Rates')
+
+    def __str__(self):
+        return self.name
 
 
 # форма занятости: штатный/совместитель
@@ -94,6 +105,9 @@ class BusinessForm(models.Model):
         verbose_name = _('Business form')
         verbose_name_plural = _('Business forms')
 
+    def __str__(self):
+        return self.name
+
 
 # кафедра
 class Chair(models.Model):
@@ -105,6 +119,9 @@ class Chair(models.Model):
         verbose_name = _('Chair')
         verbose_name_plural = _('Chairs')
 
+    def __str__(self):
+        return self.name
+
 
 # факультет
 class Faculty(models.Model):
@@ -115,6 +132,9 @@ class Faculty(models.Model):
     class Meta:
         verbose_name = _('Faculty')
         verbose_name_plural = _('Faculties')
+
+    def __str__(self):
+        return self.name
 
 
 class User(AbstractUser):
@@ -139,7 +159,7 @@ class User(AbstractUser):
     rate = models.ForeignKey(Rate, on_delete=models.SET_NULL, verbose_name=_('Rate'), null=True)
 
     business_form = models.ForeignKey(BusinessForm, on_delete=models.SET_NULL, verbose_name=_('Business form'), null=True)
-    
+
     USERNAME_FIELD = 'login'
 
     is_deleted = models.BooleanField(default=False)

@@ -49,7 +49,7 @@ class EduWorkView(ListView):
                 deviation_annual_sum=django_db_models.Sum('deviation_annual'),
             )
         else:
-            context['edu_works'] = self.model.objects.all()
+            context['edu_works'] = self.model.objects.filter(user__chair=self.request.user.chair, user__faculty=self.request.user.faculty)
             context['totals'] = self.model.objects.all()\
             .aggregate(
                 by_plan_1_sum=django_db_models.Sum('by_plan_1'),
@@ -63,7 +63,7 @@ class EduWorkView(ListView):
                 deviation_annual_sum=django_db_models.Sum('deviation_annual'),
             )
 
-        context['fields'] = [_(field.verbose_name) for field in self.model._meta.get_fields() if field.name != "id"]
+        context['fields'] = [_(field.verbose_name) for field in self.model._meta.get_fields() if field.name != "id" and field.name != "is_deleted"]
 
         return context
 

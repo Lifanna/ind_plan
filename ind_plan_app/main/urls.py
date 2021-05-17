@@ -10,7 +10,7 @@ from . import views as main_views
 
 urlpatterns = [
     path('login/', main_views.CustomLoginView.as_view(template_name='login.html'), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout'),
+    path('logout/', main_views.CustomLogoutView.as_view(), name='logout'),
     path('index/', main_views.IndexView.as_view(), name='index'),
     
     path('registration/', main_views.UserRegistrationView.as_view(), name="user_registration"),

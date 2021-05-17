@@ -6,6 +6,8 @@ from django.utils.translation import ugettext_lazy as _
 class EducationalWorkType(models.Model):
     name = models.CharField(_("Educational work type"), max_length=255, blank=True)
 
+    is_deleted = models.BooleanField(_("Is deleted"), default=False)
+
     def __str__(self):
         return self.name
 
@@ -35,7 +37,11 @@ class EducationalWork(models.Model):
 
     deviation_annual = models.IntegerField(_("Deviation annual"), blank=True)
 
+    approved = models.BooleanField(_("Approval status"), default=False)
+
     user = models.ForeignKey(main_models.User, on_delete=models.SET_NULL, verbose_name=_("Author"), null=True)
+
+    is_deleted = models.BooleanField(_("Is deleted"), default=False)
 
     def calculated_fields(self):
         self.deviation_1 = self.by_plan_1 + self.by_fact_1

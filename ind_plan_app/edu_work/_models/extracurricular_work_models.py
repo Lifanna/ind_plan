@@ -6,6 +6,8 @@ from django.utils.translation import ugettext_lazy as _
 class ExtracurricularWorkType(models.Model):
     name = models.CharField(_("Extracurricular work type"), max_length=255, blank=True)
 
+    is_deleted = models.BooleanField(_("Is deleted"), default=False)
+
     def __str__(self):
         return self.name
 
@@ -16,6 +18,8 @@ class ExtracurricularWorkType(models.Model):
 
 class InternationalCooperationWorkType(models.Model):
     name = models.CharField(_("International cooperation work type"), max_length=255, blank=True)
+    
+    is_deleted = models.BooleanField(_("Is deleted"), default=False)
 
     def __str__(self):
         return self.name
@@ -37,7 +41,11 @@ class InternationalCooperationWork(models.Model):
 
     completed = models.BooleanField(_("Completion mark"), blank=True, null=True)
 
+    approved = models.BooleanField(_("Approval status"), default=False)
+
     user = models.ForeignKey(main_models.User, on_delete=models.SET_NULL, verbose_name=_("Author"), null=True)
+
+    is_deleted = models.BooleanField(_("Is deleted"), default=False)
 
     class Meta:
         verbose_name = _('International cooperation work')
@@ -55,7 +63,11 @@ class VocationalGuidanceWork(models.Model):
 
     parent_contacts = models.CharField(_("Contacts of parents"),  max_length=255, blank=True, null=True)
 
+    approved = models.BooleanField(_("Approval status"), default=False)
+
     user = models.ForeignKey(main_models.User, on_delete=models.SET_NULL, verbose_name=_("Author"), null=True)
+
+    is_deleted = models.BooleanField(_("Is deleted"), default=False)
 
     class Meta:
         verbose_name = _('Vocational guidance work')
@@ -64,6 +76,8 @@ class VocationalGuidanceWork(models.Model):
 
 class CuratorshipWorkType(models.Model):
     name = models.CharField(_("Curatorship work type"), max_length=255, blank=True)
+
+    is_deleted = models.BooleanField(_("Is deleted"), default=False)
 
     def __str__(self):
         return self.name
@@ -81,7 +95,11 @@ class CuratorshipWork(models.Model):
 
     document = models.FileField("Supporting document", upload_to='uploads/')
 
+    approved = models.BooleanField(_("Approval status"), default=False)
+
     user = models.ForeignKey(main_models.User, on_delete=models.SET_NULL, verbose_name=_("Author"), null=True)
+
+    is_deleted = models.BooleanField(_("Is deleted"), default=False)
 
     class Meta:
         verbose_name = _('Curatorship work')

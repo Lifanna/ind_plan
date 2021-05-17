@@ -30,7 +30,7 @@
                         <tr role="row">
                             <th></th>
                             {% for field in fields %}
-                            <th class="text-white">{{ field }}</th>
+                                <th class="text-white">{{ field }}</th>
                             {% endfor %}
                             <!-- <th>Редактирование</th> -->
                             <!-- <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
@@ -89,7 +89,12 @@
                                 <td>{{ edu_work.by_fact_annual }}</td>
                                 <td>{{ edu_work.deviation_annual }}</td>
                                 <td>{{ edu_work.user.first_name }} {{ edu_work.user.last_name }}</td>
-                                <!-- <td><a href="{% url "edu_work_update" edu_work.id %}" class="btn btn-primary">Редактировать</a></td> -->
+                                <td>{% if edu_work.approved == False %}
+                                        <a href="{% url "edu_work_update" edu_work.id %}" class="btn btn-success">Утвердить</a>
+                                    {% else %}
+                                        <p class="text-success">{% trans "Approved" %}</p>
+                                    {% endif %}
+                                </td>
                             </tr>
                             {% empty %}
                                 Учебная работа отсутствует

@@ -50,7 +50,7 @@ class EduMethodWorkView(ListView):
                 by_fact_sum=django_db_models.Sum('by_fact'),
             )
 
-        context['fields'] = [_(field.verbose_name) for field in self.model._meta.get_fields() if field.name != "id"]
+        context['fields'] = [_(field.verbose_name) for field in self.model._meta.get_fields() if field.name != "id" and field.name != "is_deleted"]
 
         return context
 

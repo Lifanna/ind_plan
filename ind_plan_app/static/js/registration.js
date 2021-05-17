@@ -318,4 +318,11 @@ $(document).ready(function() {
             // $("#removeCountryCodeIcon").addClass("d-none");
         }
     });
+
+    $("label[id^=languageLabel]").click((event) => {
+        $("#selectedLanguageBtn").text(event.target.textContent);
+        var languageCode = event.target.attributes[1].value;
+        $('#languageInput').val(languageCode);
+        $('#languageForm').submit();
+    });
 })

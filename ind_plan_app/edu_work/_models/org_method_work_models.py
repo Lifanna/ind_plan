@@ -8,6 +8,8 @@ import os
 class OrgMethodWorkType(models.Model):
     name = models.CharField(_("Organizational methodical work type"), max_length=255, blank=True)
 
+    is_deleted = models.BooleanField(_("Is deleted"), default=False)
+
     def __str__(self):
         return self.name
 
@@ -28,7 +30,11 @@ class OrgMethodWork(models.Model):
 
     document = models.FileField("Supporting document", upload_to=upload_to, validators=[validate_file_extension])
 
+    approved = models.BooleanField(_("Approval status"), default=False)
+
     user = models.ForeignKey(main_models.User, on_delete=models.SET_NULL, verbose_name=_("Author"), null=True)
+
+    is_deleted = models.BooleanField(_("Is deleted"), default=False)
 
     class Meta:
         verbose_name = _('Organizational methodical work')
