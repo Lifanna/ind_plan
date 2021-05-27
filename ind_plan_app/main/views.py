@@ -89,12 +89,12 @@ class CustomLogoutView(LogoutView):
 @method_decorator(login_required, name='dispatch')
 class IndexView(TemplateView):
     def get_template_names(self):
-        template_name = ['main/index_tutor.html']
+        template_name = ['main/index.html']
 
         if self.request.user.status.name == 'Преподаватель':
-            template_name = ['main/index_tutor.html']
+            template_name = ['main/index.html']
         elif self.request.user.status.name == 'Заведующий кафедрой':
-            template_name = ['main/index_head.html']
+            template_name = ['main/index.html']
 
         return template_name
 
@@ -126,6 +126,7 @@ def handler404(request, *args, **argv):
 
 
 def handler500(request, *args, **argv):
+    print("DDDDDD")
     response = render(request, '500.html', {})
     response.status_code = 500
     return response

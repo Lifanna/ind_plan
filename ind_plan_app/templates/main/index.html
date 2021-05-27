@@ -1,0 +1,107 @@
+{% extends 'master_page.html' %}
+{% load i18n %}
+{% block title %} {% trans "Main" %} {% endblock %}
+{% block content %}
+    <header class="reg-header text-center mb-5">
+        <!-- <h1 class="reg-header__title">{% trans "Main" %}</h1> -->
+    </header>
+    <div class="row">
+        <div class="col-12 col-md-4 mb-2">
+            <div class="card shadow-lg rounded">
+                <img src="/static/images/account.png" class="card-img-top img-fluid img-thumbnail" alt="...">
+                <div class="card-body">
+                    {% if user.is_authenticated %}
+                        <h5 class="card-title text-center text-dark">{{ user.first_name }} {{ user.last_name }}</h5>    
+                    {% endif %}
+                    <h5 class="card-title"></h5>
+                    <p class="card-text text-center">Здесь будет информация о преподавателе/заведующем/декане</p>
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary">Редактировать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-8 my-2 my-md-0">
+            <div class="card shadow-lg rounded">
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center text-dark">
+                            <a href="/edu_work/index/" class="btn btn-hover">Учебная работа</a>
+                            <span class="badge badge-primary badge-pill">14</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center text-dark">
+                            <a href="/edu_work/methodical/index/" class="btn btn-hover">Учебно-методическая работа</a>
+                            <span class="badge badge-primary badge-pill">2</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center text-dark">
+                            <a href="/edu_work/scientific/index/" class="btn btn-hover">Научно-методическая работа</a>
+                            <span class="badge badge-primary badge-pill">1</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center text-dark">
+                            <a href="/edu_work/organizational/index/" class="btn btn-hover">Организационно-методическая работа</a>
+                            <span class="badge badge-primary badge-pill">1</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center text-dark">
+                            <a href="/edu_work/extra/index/" class="btn btn-hover">Внеучебная работа</a>
+                            <span class="badge badge-primary badge-pill">1</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center text-dark">
+                            <a href="/edu_work/extra/int_coop/index/" class="btn btn-hover">Международное сотрудничество</a>
+                            <span class="badge badge-primary badge-pill">1</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center text-dark">
+                            <a href="/edu_work/extra/proforientation/index/" class="btn btn-hover">Профориентация</a>
+                            <span class="badge badge-primary badge-pill">1</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center text-dark">
+                            <a href="/edu_work/extra/curatorship/index/" class="btn btn-hover">Кураторство</a>
+                            <span class="badge badge-primary badge-pill">1</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 my-2">
+            <div class="card shadow-lg rounded">
+                <div class="card-body">
+                    {% if user.is_authenticated %}
+                        <h5 class="card-title text-center">{{ user.get_username }}</h5>    
+                    {% endif %}
+                    <h5 class="card-title"></h5>
+                    <p class="card-text text-center">Здесь будет информация о преподавателе/заведующем/декане</p>
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary">Редактировать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 my-2">
+            <div class="card shadow-lg rounded">
+                <div class="card-body">
+                    {% if user.is_authenticated %}
+                        <h5 class="card-title text-center">{{ user.get_username }}</h5>    
+                    {% endif %}
+                    <h5 class="card-title"></h5>
+                    <p class="card-text text-center">Здесь будет информация о преподавателе/заведующем/декане</p>
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary">Редактировать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 my-2">
+            <div class="card shadow-lg rounded">
+                <div class="card-body">
+                    {% if user.is_authenticated %}
+                        <h5 class="card-title text-center">{{ user.get_username }}</h5>
+                    {% endif %}
+                    <h5 class="card-title"></h5>
+                    <p class="card-text text-center">Здесь будет информация о преподавателе/заведующем/декане</p>
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary">Редактировать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

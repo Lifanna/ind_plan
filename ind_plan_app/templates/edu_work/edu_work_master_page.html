@@ -2,22 +2,5 @@
 {% load i18n %}
 {% block title %} Учебная работа {% endblock %}
 {% block content %}
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link{% if request.path == '/edu_work/index/' %} active{% endif %}" href="/edu_work/index/">{% trans "Educational work" %}</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link{% if request.path == '/edu_work/methodical/index/' %} active{% endif %}" href="/edu_work/methodical/index/">{% trans "Educational methodical work" %}</a>
-        </li>
-        <li class="nav-item">
-            <!-- <a class="nav-link{% if request.path == '/edu_work/create/' %} active{% endif %}" href="/edu_work/create/">Добавить</a> -->
-            <a class="nav-link{% if request.path == '/edu_work/scientific/index/' %} active{% endif %}" href="/edu_work/scientific/index/">{% trans "Scientific methodical work" %}</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link{% if request.path == '/edu_work/organizational/index/' %} active{% endif %}" href="/edu_work/organizational/index/">{% trans "Organizational methodical work" %}</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link{% if request.path == '/edu_work/extra/index/' %} active{% endif %}" href="/edu_work/extra/index/">{% trans "Extracurricular work" %}</a>
-        </li>
-    </ul>
+    
 {% endblock %}
